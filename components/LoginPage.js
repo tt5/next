@@ -1,31 +1,34 @@
-import { Auth } from '@supabase/ui';
-import { useUser } from '@supabase/auth-helpers-react';
-import { supabase } from '../utils/supabaseClient'
-import { useEffect, useState } from 'react';
+import { Auth, Card } from "@supabase/ui";
+import { supabase } from "../utils/supabaseClient";
+import { useEffect, useState } from "react";
 
 const LoginPage = () => {
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useState(null);
 
   useEffect(() => {
-    setSession(supabase.auth.session())
+    setSession(supabase.auth.session());
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
+      setSession(session);
+    });
+  }, []);
 
-
-  if (!session)
+  if (!session) {
     return (
       <>
-        <Auth
-          supabaseClient={supabase}
-          providers={['google', 'github']}
-          socialLayout="horizontal"
-          socialButtonSize="xlarge"
-        />
+      <div style={{maxWidth: "600px"}}>
+        <Card>
+          <Auth
+            supabaseClient={supabase}
+            providers={["google", "github"]}
+            socialLayout="horizontal"
+            socialButtonSize="xlarge"
+          />
+        </Card>
+      </div>
       </>
     );
+  }
 
   return (
     <>
