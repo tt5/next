@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import  LoginPage from '../components/LoginPage'
 
 export default function Home() {
 
@@ -11,8 +10,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LoginPage />
-       
       <main>
         <h1 className="title">
           Read{' '}

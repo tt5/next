@@ -6,8 +6,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@supabase/auth-helpers-nextjs": "^0.2.5",
-    "@supabase/auth-helpers-react": "^0.2.3",
     "@supabase/realtime-js": "^1.7.3",
     "@supabase/supabase-js": "^1.35.4",
     "@supabase/ui": "^0.36.5",

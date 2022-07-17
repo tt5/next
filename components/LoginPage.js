@@ -1,27 +1,25 @@
 import { Auth } from '@supabase/ui';
 import { useUser } from '@supabase/auth-helpers-react';
-import { supabaseClient } from '@supabase/auth-helpers-nextjs';
+import { supabase } from '../utils/supabaseClient'
 import { useEffect, useState } from 'react';
 
 const LoginPage = () => {
-  const { user, error } = useUser();
-  const [data, setData] = useState();
+  const [session, setSession] = useState(null)
 
   useEffect(() => {
-    async function loadData() {
-      const { data } = await supabaseClient.from('test').select('*');
-      setData(data);
-    }
-    // Only run query once user is logged in.
-    if (user) loadData();
-  }, [user]);
+    setSession(supabase.auth.session())
 
-  if (!user)
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
+
+  if (!session)
     return (
       <>
-        {error && <p>{error.message}</p>}
         <Auth
-          supabaseClient={supabaseClient}
+          supabaseClient={supabase}
           providers={['google', 'github']}
           socialLayout="horizontal"
           socialButtonSize="xlarge"
@@ -31,10 +29,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <button onClick={() => supabaseClient.auth.signOut()}>Sign out</button>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <p>client-side data fetching with RLS</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <button onClick={() => supabase.auth.signOut()}>Sign out</button>
     </>
   );
 };
