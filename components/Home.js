@@ -6,9 +6,7 @@ import { supabase } from '../utils/supabaseClient'
 //  .update('username', 'ccc4')
 //  .eq('username', 'ccc3')
 
-
-
-console.log(res)
+//console.log(res)
 
 const Home = () => {
   const [change, setChange] = useState({});
