@@ -1,4 +1,6 @@
-import { Auth, Card } from "@supabase/ui";
+//import { Auth, Card } from "@supabase/ui";
+//import { Card } from "@supabase/ui";
+import Auth from "./Auth/Auth.tsx"
 import { supabase } from "../utils/supabaseClient";
 import { useEffect, useState } from "react";
 
@@ -17,14 +19,10 @@ const LoginPage = () => {
     return (
       <>
       <div style={{maxWidth: "600px"}}>
-        <Card>
           <Auth
             supabaseClient={supabase}
             providers={["google", "github"]}
-            socialLayout="horizontal"
-            socialButtonSize="xlarge"
           />
-        </Card>
       </div>
       </>
     );

@@ -5,3 +5,11 @@
 a {
   @apply underline;
 }
+
+button {
+  @apply bg-blue-300 p-2;
+}
+
+.buttonB {
+  @apply bg-blue-100 p-2;
+}
